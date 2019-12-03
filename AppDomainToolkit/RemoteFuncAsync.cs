@@ -273,6 +273,20 @@
             proxy.RemoteObject.Invoke(arg1, arg2, arg3, arg4, arg5, toInvoke, tcs);
             return tcs.Task;
         }
+
+
+        internal static Task Continuation<TResult>(this Task<TResult> previous, MarshalableTaskCompletionSource<TResult> tcs)
+        {
+            return previous.ContinueWith(t =>
+            {
+                if (t.IsCanceled)
+                    tcs.SetCanceled();
+                else if (t.IsFaulted)
+                    tcs.SetException(t.Exception.InnerExceptions.ToArray());
+                else
+                    tcs.SetResult(t.Result);
+            });
+        }
     }
 
     /// <summary>
@@ -298,18 +312,8 @@
                 throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
                 throw new ArgumentNullException(nameof(tcs));
-            toInvoke.Invoke().ContinueWith(t =>
-             {
-                 if (t.IsCanceled)
-                     tcs.SetCanceled();
-                 else if (t.IsFaulted)
-                     tcs.SetException(new Exception[] { t.Exception });
-                 else
-                     tcs.SetResult(t.Result);
-             });
+            toInvoke.Invoke().Continuation(tcs);
         }
-
-
     }
 
     /// <summary>
@@ -341,15 +345,7 @@
                 throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
                 throw new ArgumentNullException(nameof(tcs));
-            toInvoke.Invoke(arg1).ContinueWith(t =>
-             {
-                 if (t.IsCanceled)
-                     tcs.SetCanceled();
-                 else if (t.IsFaulted)
-                     tcs.SetException(new Exception[] { t.Exception });
-                 else
-                     tcs.SetResult(t.Result);
-             });
+            toInvoke.Invoke(arg1).Continuation(tcs);
         }
     }
 
@@ -388,15 +384,7 @@
                 throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
                 throw new ArgumentNullException(nameof(tcs));
-            toInvoke.Invoke(arg1, arg2).ContinueWith(t =>
-            {
-                if (t.IsCanceled)
-                    tcs.SetCanceled();
-                else if (t.IsFaulted)
-                    tcs.SetException(new Exception[] { t.Exception });
-                else
-                    tcs.SetResult(t.Result);
-            });
+            toInvoke.Invoke(arg1, arg2).Continuation(tcs);
         }
     }
 
@@ -441,15 +429,7 @@
                 throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
                 throw new ArgumentNullException(nameof(tcs));
-            toInvoke.Invoke(arg1, arg2, arg3).ContinueWith(t =>
-             {
-                 if (t.IsCanceled)
-                     tcs.SetCanceled();
-                 else if (t.IsFaulted)
-                     tcs.SetException(new Exception[] { t.Exception });
-                 else
-                     tcs.SetResult(t.Result);
-             });
+            toInvoke.Invoke(arg1, arg2, arg3).Continuation(tcs);
         }
     }
 
@@ -501,15 +481,7 @@
             if (tcs == null)
                 throw new ArgumentNullException(nameof(tcs));
 
-            toInvoke.Invoke(arg1, arg2, arg3, arg4).ContinueWith(t =>
-            {
-                if (t.IsCanceled)
-                    tcs.SetCanceled();
-                else if (t.IsFaulted)
-                    tcs.SetException(new Exception[] { t.Exception });
-                else
-                    tcs.SetResult(t.Result);
-            });
+            toInvoke.Invoke(arg1, arg2, arg3, arg4).Continuation(tcs);
         }
     }
 
@@ -567,15 +539,7 @@
             if (tcs == null)
                 throw new ArgumentNullException(nameof(tcs));
 
-            toInvoke.Invoke(arg1, arg2, arg3, arg4, arg5).ContinueWith(t =>
-              {
-                  if (t.IsCanceled)
-                      tcs.SetCanceled();
-                  else if (t.IsFaulted)
-                      tcs.SetException(new Exception[] { t.Exception });
-                  else
-                      tcs.SetResult(t.Result);
-              });
+            toInvoke.Invoke(arg1, arg2, arg3, arg4, arg5).Continuation(tcs);
         }
     }
 }
