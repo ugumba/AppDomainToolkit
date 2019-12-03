@@ -105,7 +105,7 @@
         {
             if (wrappedDomain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(wrappedDomain));
             }
 
             var type = typeof(T);
@@ -143,7 +143,7 @@
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             return CreateProxy(new DisposableAppDomain(domain), constructorArgs);

@@ -28,12 +28,12 @@
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             var proxy = Remote<RemoteFunc<TResult>>.CreateProxy(domain);
@@ -65,12 +65,12 @@
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             var proxy = Remote<RemoteFunc<T, TResult>>.CreateProxy(domain);
@@ -108,12 +108,12 @@
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             var proxy = Remote<RemoteFunc<T1, T2, TResult>>.CreateProxy(domain);
@@ -157,12 +157,12 @@
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             var proxy = Remote<RemoteFunc<T1, T2, T3, TResult>>.CreateProxy(domain);
@@ -212,12 +212,12 @@
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             var proxy = Remote<RemoteFunc<T1, T2, T3, T4, TResult>>.CreateProxy(domain);
@@ -261,7 +261,7 @@
         {
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             return toInvoke.Invoke();
@@ -310,7 +310,7 @@
         {
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             return toInvoke.Invoke(arg);
@@ -365,7 +365,7 @@
         {
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             return toInvoke.Invoke(arg1, arg2);
@@ -426,7 +426,7 @@
         {
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             return toInvoke.Invoke(arg1, arg2, arg3);
@@ -493,7 +493,7 @@
         {
             if (toInvoke == null)
             {
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             }
 
             return toInvoke.Invoke(arg1, arg2, arg3, arg4);

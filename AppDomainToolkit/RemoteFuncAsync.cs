@@ -29,9 +29,9 @@
             Func<Task<TResult>> toInvoke)
         {
             if (domain == null)
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
 
             var proxy = Remote<RemoteFuncAsync<TResult>>.CreateProxy(domain);
             var tcs = new MarshalableTaskCompletionSource<TResult>();
@@ -64,9 +64,9 @@
             Func<T1, Task<TResult>> toInvoke)
         {
             if (domain == null)
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
 
             var proxy = Remote<RemoteFuncAsync<T1, TResult>>.CreateProxy(domain);
             var tcs = new MarshalableTaskCompletionSource<TResult>();
@@ -105,9 +105,9 @@
             Func<T1, T2, Task<TResult>> toInvoke)
         {
             if (domain == null)
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
 
             var proxy = Remote<RemoteFuncAsync<T1, T2, TResult>>.CreateProxy(domain);
             var tcs = new MarshalableTaskCompletionSource<TResult>();
@@ -152,9 +152,9 @@
             Func<T1, T2, T3, Task<TResult>> toInvoke)
         {
             if (domain == null)
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
 
             var proxy = Remote<RemoteFuncAsync<T1, T2, T3, TResult>>.CreateProxy(domain);
             var tcs = new MarshalableTaskCompletionSource<TResult>();
@@ -205,9 +205,9 @@
             Func<T1, T2, T3, T4, Task<TResult>> toInvoke)
         {
             if (domain == null)
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
 
             var proxy = Remote<RemoteFuncAsync<T1, T2, T3, T4, TResult>>.CreateProxy(domain);
             var tcs = new MarshalableTaskCompletionSource<TResult>();
@@ -264,9 +264,9 @@
             Func<T1, T2, T3, T4, T5, Task<TResult>> toInvoke)
         {
             if (domain == null)
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
 
             var proxy = Remote<RemoteFuncAsync<T1, T2, T3, T4, T5, TResult>>.CreateProxy(domain);
             var tcs = new MarshalableTaskCompletionSource<TResult>();
@@ -295,9 +295,9 @@
         public void Invoke(Func<Task<TResult>> toInvoke, MarshalableTaskCompletionSource<TResult> tcs)
         {
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
-                throw new ArgumentNullException("tcs");
+                throw new ArgumentNullException(nameof(tcs));
             toInvoke.Invoke().ContinueWith(t =>
              {
                  if (t.IsCanceled)
@@ -338,9 +338,9 @@
         public void Invoke(T1 arg1, Func<T1, Task<TResult>> toInvoke, MarshalableTaskCompletionSource<TResult> tcs)
         {
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
-                throw new ArgumentNullException("tcs");
+                throw new ArgumentNullException(nameof(tcs));
             toInvoke.Invoke(arg1).ContinueWith(t =>
              {
                  if (t.IsCanceled)
@@ -385,9 +385,9 @@
         public void Invoke(T1 arg1, T2 arg2, Func<T1, T2, Task<TResult>> toInvoke, MarshalableTaskCompletionSource<TResult> tcs)
         {
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
-                throw new ArgumentNullException("tcs");
+                throw new ArgumentNullException(nameof(tcs));
             toInvoke.Invoke(arg1, arg2).ContinueWith(t =>
             {
                 if (t.IsCanceled)
@@ -438,9 +438,9 @@
         public void Invoke(T1 arg1, T2 arg2, T3 arg3, Func<T1, T2, T3, Task<TResult>> toInvoke, MarshalableTaskCompletionSource<TResult> tcs)
         {
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
-                throw new ArgumentNullException("tcs");
+                throw new ArgumentNullException(nameof(tcs));
             toInvoke.Invoke(arg1, arg2, arg3).ContinueWith(t =>
              {
                  if (t.IsCanceled)
@@ -497,9 +497,9 @@
         public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, Func<T1, T2, T3, T4, Task<TResult>> toInvoke, MarshalableTaskCompletionSource<TResult> tcs)
         {
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
-                throw new ArgumentNullException("tcs");
+                throw new ArgumentNullException(nameof(tcs));
 
             toInvoke.Invoke(arg1, arg2, arg3, arg4).ContinueWith(t =>
             {
@@ -563,9 +563,9 @@
         public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, Func<T1, T2, T3, T4, T5, Task<TResult>> toInvoke, MarshalableTaskCompletionSource<TResult> tcs)
         {
             if (toInvoke == null)
-                throw new ArgumentNullException("toInvoke");
+                throw new ArgumentNullException(nameof(toInvoke));
             if (tcs == null)
-                throw new ArgumentNullException("tcs");
+                throw new ArgumentNullException(nameof(tcs));
 
             toInvoke.Invoke(arg1, arg2, arg3, arg4, arg5).ContinueWith(t =>
               {

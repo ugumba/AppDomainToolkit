@@ -28,7 +28,7 @@
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             this.domain = domain;

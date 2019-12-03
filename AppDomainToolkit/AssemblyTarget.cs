@@ -54,7 +54,7 @@
         {
             if (assembly == null)
             {
-                throw new ArgumentNullException("assembly");
+                throw new ArgumentNullException(nameof(assembly));
             }
 
             if (assembly.IsDynamic)
@@ -87,7 +87,7 @@
         {
             if (codebase == null)
             {
-                throw new ArgumentNullException("codebase", "Codebase URI cannot be null!");
+                throw new ArgumentNullException(nameof(codebase), "Codebase URI cannot be null!");
             }
 
             if (!File.Exists(codebase.LocalPath))
@@ -122,7 +122,7 @@
         {
             if (fullName == null)
             {
-                throw new ArgumentNullException("fullName", "FullName cannot be null!");
+                throw new ArgumentNullException(nameof(fullName), "FullName cannot be null!");
             }
 
             return new AssemblyTarget()

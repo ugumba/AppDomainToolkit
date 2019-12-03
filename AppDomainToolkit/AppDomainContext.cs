@@ -256,7 +256,7 @@ namespace AppDomainToolkit
         {
             if (setupInfo == null)
             {
-                throw new ArgumentNullException("setupInfo");
+                throw new ArgumentNullException(nameof(setupInfo));
             }
 
             var guid = Guid.NewGuid();
@@ -277,7 +277,7 @@ namespace AppDomainToolkit
         {
             if (domain == null)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
             return new AppDomainContext<TAssemblyTargetLoader, TAssemblyResolver>(domain);
@@ -293,7 +293,7 @@ namespace AppDomainToolkit
         {
             if (codebaseUri == null)
             {
-                throw new ArgumentNullException("codebaseUri");
+                throw new ArgumentNullException(nameof(codebaseUri));
             }
 
             return this.LoadedAssemblies.FirstOrDefault(x => x.CodeBase.Equals(codebaseUri));
