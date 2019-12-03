@@ -123,7 +123,7 @@ namespace AppDomainToolkit
                     continue;
                 }
 
-                var dir = new DirectoryInfo(path);
+                var dir = new DirectoryInfo(Path.IsPathRooted(path) ? path : Path.Combine(_applicationBase, path));
                 if (!this.probePaths.Contains(dir.FullName))
                 {
                     this.probePaths.Add(dir.FullName);
