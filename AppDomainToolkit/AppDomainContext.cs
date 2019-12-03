@@ -99,8 +99,8 @@ namespace AppDomainToolkit
             AppDomain.CurrentDomain.AssemblyResolve += this.AssemblyImporter.Resolve;
 
             // Create remotes
-            this.loaderProxy = Remote<TAssemblyTargetLoader>.CreateProxy(this.wrappedDomain);
-            this.resolverProxy = Remote<TAssemblyResolver>.CreateProxy(this.wrappedDomain);
+            this.loaderProxy = Remote<TAssemblyTargetLoader>.CreateProxy(this.wrappedDomain, null, null);
+            this.resolverProxy = Remote<TAssemblyResolver>.CreateProxy(this.wrappedDomain, null, null);
 
             // Assign the resolver in the other domain (just to be safe)
             RemoteAction.Invoke(

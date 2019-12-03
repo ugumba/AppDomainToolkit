@@ -10,7 +10,7 @@
     /// <typeparam name="T">
     /// The type of object to import. Must be a deriviative of MarshalByRefObject.
     /// </typeparam>
-    public sealed class Remote<T> : AppDomainToolkit.IDisposable where T : MarshalByRefObject
+    public sealed class Remote<T> : AppDomainToolkit.IDisposable where T : class //MarshalByRefObject
     {
         #region Fields & Constants
 
@@ -101,7 +101,7 @@
         /// <returns>
         /// A remote proxy to an object of type T living in the target wrapped application domain.
         /// </returns>
-        internal static Remote<T> CreateProxy(DisposableAppDomain wrappedDomain, params object[] constructorArgs)
+        internal static Remote<T> CreateProxy(DisposableAppDomain wrappedDomain, string assemblyName, string typeFullName, params object[] constructorArgs)
         {
             if (wrappedDomain == null)
             {
@@ -112,8 +112,8 @@
 
             var proxyHandle = Activator.CreateInstance(
                 wrappedDomain.Domain,
-                type.Assembly.GetName().Name,
-                type.FullName,
+                assemblyName ?? type.Assembly.GetName().Name,
+                typeFullName ?? type.FullName,
                 false,
                 BindingFlags.CreateInstance, 
                 null,
@@ -146,7 +146,17 @@
                 throw new ArgumentNullException(nameof(domain));
             }
 
-            return CreateProxy(new DisposableAppDomain(domain), constructorArgs);
+            return CreateProxy(domain, null, null, constructorArgs);
+        }
+
+        public static Remote<T> CreateProxy(AppDomain domain, string assemblyName, string typeFullName, params object[] constructorArgs)
+        {
+            if (domain == null)
+            {
+                throw new ArgumentNullException(nameof(domain));
+            }
+
+            return CreateProxy(new DisposableAppDomain(domain), assemblyName, typeFullName, constructorArgs);
         }
 
         /// <inheritdoc/>
