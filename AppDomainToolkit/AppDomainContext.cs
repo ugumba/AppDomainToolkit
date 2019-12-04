@@ -406,5 +406,7 @@ namespace AppDomainToolkit
         }
 
         #endregion
+
+        public static implicit operator AppDomain(AppDomainContext<TAssemblyTargetLoader, TAssemblyResolver> context) => context.Domain;
     }
 }
